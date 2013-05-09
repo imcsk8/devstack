@@ -102,7 +102,7 @@ disable_negated_services
 
 # Warn users who aren't on an explicitly supported distro, but allow them to
 # override check and attempt installation with ``FORCE=yes ./stack``
-if [[ ! ${DISTRO} =~ (oneiric|precise|quantal|raring|f16|f17|f18|opensuse-12.2) ]]; then
+if [[ ! ${DISTRO} =~ (oneiric|precise|quantal|raring|f16|f17|f18|opensuse-12.2|gentoo-1.12.14) ]]; then
     echo "WARNING: this script has not been tested on $DISTRO"
     if [[ "$FORCE" != "yes" ]]; then
         die $LINENO "If you wish to run this script anyway run with FORCE=yes"
@@ -548,7 +548,11 @@ TRACK_DEPENDS=${TRACK_DEPENDS:-False}
 # Install python packages into a virtualenv so that we can track them
 if [[ $TRACK_DEPENDS = True ]]; then
     echo_summary "Installing Python packages into a virtualenv $DEST/.venv"
-    install_package python-virtualenv
+    if is_gentoo; then
+        install_package virtualenv
+    else
+        install_package python-virtualenv
+    fi
 
     rm -rf $DEST/.venv
     virtualenv --system-site-packages $DEST/.venv
@@ -599,7 +603,9 @@ if is_service_enabled g-api n-api; then
     configure_glance
 fi
 
+echo "CHECANDO CINDER"
 if is_service_enabled cinder; then
+    echo "INSTALANDO CINDER"
     install_cinder
     configure_cinder
 fi

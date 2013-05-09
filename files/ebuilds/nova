@@ -1,0 +1,49 @@
+net-misc/curl
+# Note: we need to package dhcp_release in dnsmasq!
+net-dns/dnsmasq
+net-firewall/ebtables
+sys-apps/gawk
+genisoimage # NOPRIME
+net-firewall/iptables
+net-misc/iputils
+kpartx # NOPRIME
+app-emulation/kvm-kmod
+# qemu as fallback if kvm cannot be used
+app-emulation/qemu
+app-emulation/libvirt
+dev-db/mysql
+sys-block/parted
+dev-python/m2crypto 
+dev-python/paste
+dev-python/pastedeploy
+dev-python/routes
+dev-python/sqlalchemy
+dev-python/tempita
+dev-python/boto
+dev-python/carrot
+dev-python/cheetah
+dev-python/eventlet
+dev-python/feedparser
+dev-python/greenlet
+dev-python/iso8601
+dev-python/kombu
+dev-python/lockfile
+dev-python/lxml # needed for glance which is needed for nova --- this shouldn't be here
+dev-python/mox
+dev-python/mysql-python
+dev-python/netaddr
+dev-python/numpy # needed by websockify for spice console
+dev-python/paramiko
+dev-python/python-gflags
+dev-python/sqlalchemy-migrate
+dev-python/suds
+dev-python/pyxattr # needed for glance which is needed for nova --- this shouldn't be here
+net-misc/rabbitmq-server
+net-misc/socat
+dev-db/sqlite
+app-admin/sudo
+vlan  # NOPRIME
+
+# FIXME: qpid is not part of gentoo, those names are tentative
+dev-python/qpid # NOPRIME
+qpidd # NOPRIME

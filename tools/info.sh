@@ -93,6 +93,8 @@ for p in $(get_packages $ENABLED_SERVICES); do
         ver=$(dpkg -s $p 2>/dev/null | grep '^Version: ' | cut -d' ' -f2)
     elif [[ "$os_PACKAGE" = "rpm" ]]; then
         ver=$(rpm -q --queryformat "%{VERSION}-%{RELEASE}\n" $p)
+    elif [[ "$os_PACKAGE" = "ebuild" ]]; then
+    	ver=$(cat /var/db/pkg/*/$p*/PF | cut -d'-' -f 2)
     else
         exit_distro_not_supported "finding version of a package"
     fi

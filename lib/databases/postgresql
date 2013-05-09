@@ -22,7 +22,7 @@ function cleanup_database_postgresql {
         # Get ruthless with mysql
         sudo aptitude purge -y  ~npostgresql
         return
-    elif is_fedora; then
+    elif is_fedora || is_gentoo; then
         uninstall_package postgresql-server
     else
         return
@@ -52,6 +52,8 @@ function configure_database_postgresql {
         PG_CONF=/var/lib/pgsql/data/postgresql.conf
         # initdb is called when postgresql is first started
         sudo [ -e $PG_HBA ] || start_service postgresql
+    elif is_gentoo; then
+    	emerge --config dev-db/postgresql-server
     else
         exit_distro_not_supported "postgresql configuration"
     fi
@@ -81,7 +83,7 @@ EOF
     fi
     if is_ubuntu; then
         install_package postgresql
-    elif is_fedora || is_suse; then
+    elif is_fedora || is_suse || is_gentoo; then
         install_package postgresql-server
     else
         exit_distro_not_supported "postgresql installation"

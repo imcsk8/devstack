@@ -1,0 +1,24 @@
+net-misc/bridge-utils
+net-misc/curl
+euca2ools # NOPRIME
+dev-vcs/git
+net-misc/iputils
+net-misc/openssh
+dev-libs/openssl
+sys-process/psmisc
+dev-python/cmd2
+dev-python/netaddr
+dev-python/pep8
+dev-python/pip
+dev-python/pylint
+dev-python/unittest2
+dev-python/virtualenv
+app-misc/screen
+app-arch/tar
+net-analyzer/tcpdump
+app-arch/unzip
+app-editors/vim
+net-misc/wget
+
+sys-apps/mlocate # useful when debugging
+sys-process/lsof # useful when debugging

@@ -1,0 +1,6 @@
+# Stuff for diablo volumes
+app-cdr/cdrkit
+sys-fs/lvm2
+sys-block/open-iscsi
+sys-fs/sysfsutils
+sys-apps/sg3_utils

@@ -49,11 +49,20 @@ fi
 # Make sure the proxy config is visible to sub-processes
 export_proxy_variables
 
+#Add gentoo use flags
+if is_gentoo; then
+    TEST_DEVSTACK=$(grep devstack /etc/portage/package.use || echo "0")
+    if [[ ! "$TEST_DEVSTACK" =~ "devstack" ]]; then
+    	echo "Setting gentoo use flags $FILES/gentoo_package.use"
+        cat $FILES/gentoo_package.use >> /etc/portage/package.use
+    fi
+fi
 
 # Install Packages
 # ================
 
 # Install package requirements
+testvar=$(get_packages $ENABLED_SERVICES)
 install_package $(get_packages $ENABLED_SERVICES)
 
 if [[ -n "$SYSLOG" && "$SYSLOG" != "False" ]]; then

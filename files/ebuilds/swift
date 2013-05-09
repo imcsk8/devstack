@@ -1,0 +1,17 @@
+net-misc/curl
+sys-devel/gcc
+net-misc/memcached
+dev-python/pastedeploy
+dev-python/webob
+dev-python/configobj
+dev-python/coverage
+dev-python/setuptools # instead of python-distribute; dist:sle11sp2
+dev-python/eventlet
+dev-python/greenlet
+dev-python/netifaces
+dev-python/nose
+dev-python/simplejson
+dev-python/pyxattr
+dev-db/sqlite
+sys-fs/xfsprogs
+sys-apps/xinetd

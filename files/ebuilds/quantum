@@ -1,0 +1,27 @@
+# Note: we need to package dhcp_release in dnsmasq!
+net-dns/dnsmasq
+net-firewall/ebtables
+net-firewall/iptables
+net-misc/iputils
+dev-db/mysql
+dev-python/boto
+dev-python/eventlet
+dev-python/greenlet
+dev-python/iso8601
+dev-python/kombu
+dev-python/mysql-python
+dev-python/netaddr
+dev-python/paste
+dev-python/pastedeploy
+dev-python/pyudev
+dev-python/routes
+dev-python/sqlalchemy
+dev-python/suds
+net-misc/rabbitmq-server
+dev-db/sqlite
+app-admin/sudo
+vlan # NOPRIME
+
+# FIXME: qpid is not part of gentoo, those names are tentative
+dev-python/qpid # NOPRIME
+qpidd # NOPRIME

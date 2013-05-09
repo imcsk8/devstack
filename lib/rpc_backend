@@ -102,6 +102,8 @@ function install_rpc_backend() {
             install_package libzmq1 python-zmq
         elif is_suse; then
             install_package libzmq1 python-pyzmq
+        elif is_gentoo; then
+            install_package zeromq pyzmq
         else
             exit_distro_not_supported "zeromq installation"
         fi
@@ -155,7 +157,7 @@ function qpid_is_supported() {
 
     # Qpid was introduced to Ubuntu in precise, disallow it on oneiric; it is
     # not in openSUSE either right now.
-    ( ! ([[ "$DISTRO" = "oneiric" ]] || is_suse) )
+    ( ! ([[ "$DISTRO" = "oneiric" ]] || is_suse || is_gentoo) )
 }
 
 

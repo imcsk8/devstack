@@ -1,0 +1,2 @@
+dev-python/python-ldap  # temporary because this pulls in glance to get the client without running the glance prereqs
+dev-python/python-dateutil

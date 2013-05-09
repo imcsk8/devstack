@@ -1,0 +1,12 @@
+sys-devel/gcc
+dev-libs/libxml2
+dev-python/pastedeploy
+dev-python/routes
+dev-python/sqlalchemy
+dev-python/argparse
+dev-lang/python
+dev-python/eventlet
+dev-python/greenlet
+dev-python/iso8601
+wsgiref # NOPRIME
+dev-python/pyxattr

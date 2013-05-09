@@ -1,0 +1,5 @@
+# devstack addition
+app-emulation/libvirt     python
+dev-libs/libxml2          python
+dev-lang/python           sqlite
+app-emulation/libvirt     qemu virt-network

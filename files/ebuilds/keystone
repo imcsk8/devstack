@@ -1,0 +1,15 @@
+dev-libs/cyrus-sasl
+net-nds/openldap
+dev-python/paste
+dev-python/pastedeploy
+dev-python/pastescript
+dev-python/routes
+dev-python/sqlalchemy
+dev-python/webob
+dev-lang/python
+dev-python/setuptools # instead of python-distribute; dist:sle11sp2
+dev-python/greenlet
+dev-python/lxml
+dev-python/mysql-python
+dev-python/pysqlite # NOPRIME needs sqlite use flag
+dev-db/sqlite
