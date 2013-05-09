@@ -381,21 +381,19 @@ GetOSVersion() {
             os_VENDOR=""
         done
         os_PACKAGE="rpm"
-<<<<<<< HEAD
-    elif [[ -r /etc/gentoo-release ]]; then
-        os_VENDOR=`cat /etc/gentoo-release | cut -d ' ' -f 1`
-        os_RELEASE=`cat /etc/gentoo-release | cut -d ' ' -f 5`
-        os_CODENAME="$os_VENDOR $os_RELEASE" #gentoo does not use a code name
-        os_UPDATE=`emerge --version | cut -d ' ' -f 2` #portage version
-        os_PACKAGE="ebuild"
-=======
     # If lsb_release is not installed, we should be able to detect Debian OS
     elif [[ -f /etc/debian_version ]] && [[ $(cat /proc/version) =~ "Debian" ]]; then
         os_VENDOR="Debian"
         os_PACKAGE="deb"
         os_CODENAME=$(awk '/VERSION=/' /etc/os-release | sed 's/VERSION=//' | sed -r 's/\"|\(|\)//g' | awk '{print $2}')
         os_RELEASE=$(awk '/VERSION_ID=/' /etc/os-release | sed 's/VERSION_ID=//' | sed 's/\"//g')
->>>>>>> upstream/master
+    elif [[ -r /etc/gentoo-release ]]; then
+        os_VENDOR=`cat /etc/gentoo-release | cut -d ' ' -f 1`
+        os_RELEASE=`cat /etc/gentoo-release | cut -d ' ' -f 5`
+        os_CODENAME="$os_VENDOR $os_RELEASE" #gentoo does not use a code name
+        os_UPDATE=`emerge --version | cut -d ' ' -f 2` #portage version
+        os_PACKAGE="ebuild"
+
     fi
     export os_VENDOR os_RELEASE os_UPDATE os_PACKAGE os_CODENAME
 }
