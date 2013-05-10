@@ -7,7 +7,7 @@ genisoimage # NOPRIME
 net-firewall/iptables
 net-misc/iputils
 kpartx # NOPRIME
-app-emulation/kvm-kmod
+app-emulation/kvm-kmod   # NOPRIME gentoo users compile their own KVM modules
 # qemu as fallback if kvm cannot be used
 app-emulation/qemu
 app-emulation/libvirt
