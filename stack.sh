@@ -208,6 +208,9 @@ fi
 sudo mkdir -p $DEST
 sudo chown -R $STACK_USER $DEST
 
+# a basic test for $DEST path permissions (fatal on error unless skipped)
+check_path_perm_sanity ${DEST}
+
 # Set ``OFFLINE`` to ``True`` to configure ``stack.sh`` to run cleanly without
 # Internet access. ``stack.sh`` must have been previously run with Internet
 # access to install prerequisites and fetch repositories.
@@ -1037,6 +1040,8 @@ if is_service_enabled nova; then
         LIBVIRT_FIREWALL_DRIVER=${LIBVIRT_FIREWALL_DRIVER:-"nova.virt.libvirt.firewall.IptablesFirewallDriver"}
         iniset $NOVA_CONF DEFAULT firewall_driver "$LIBVIRT_FIREWALL_DRIVER"
     fi
+
+    init_nova_cells
 fi
 
 # Extra things to prepare nova for baremetal, before nova starts
@@ -1097,14 +1102,19 @@ if is_service_enabled q-svc; then
     create_quantum_initial_network
     setup_quantum_debug
 elif is_service_enabled $DATABASE_BACKENDS && is_service_enabled n-net; then
+    NM_CONF=${NOVA_CONF}
+    if is_service_enabled n-cell; then
+        NM_CONF=${NOVA_CELLS_CONF}
+    fi
+
     # Create a small network
-    $NOVA_BIN_DIR/nova-manage network create "$PRIVATE_NETWORK_NAME" $FIXED_RANGE 1 $FIXED_NETWORK_SIZE $NETWORK_CREATE_ARGS
+    $NOVA_BIN_DIR/nova-manage --config-file $NM_CONF network create "$PRIVATE_NETWORK_NAME" $FIXED_RANGE 1 $FIXED_NETWORK_SIZE $NETWORK_CREATE_ARGS
 
     # Create some floating ips
-    $NOVA_BIN_DIR/nova-manage floating create $FLOATING_RANGE --pool=$PUBLIC_NETWORK_NAME
+    $NOVA_BIN_DIR/nova-manage --config-file $NM_CONF floating create $FLOATING_RANGE --pool=$PUBLIC_NETWORK_NAME
 
     # Create a second pool
-    $NOVA_BIN_DIR/nova-manage floating create --ip_range=$TEST_FLOATING_RANGE --pool=$TEST_FLOATING_POOL
+    $NOVA_BIN_DIR/nova-manage --config-file $NM_CONF floating create --ip_range=$TEST_FLOATING_RANGE --pool=$TEST_FLOATING_POOL
 fi
 
 if is_service_enabled quantum; then
