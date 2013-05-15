@@ -563,6 +563,10 @@ fi
 # ============================
 
 if [[ is_fedora && $DISTRO =~ (rhel6) ]]; then
+    # Avoid having to configure selinux to allow things like httpd to
+    # access horizion files or run binaries like nodejs (LP#1175444)
+    sudo setenforce 0
+
     # An old version (2.0.1) of python-crypto is probably installed on
     # a fresh system, via the dependency chain
     # cas->python-paramiko->python-crypto (related to anaconda).
@@ -958,8 +962,6 @@ if is_service_enabled nova; then
         echo_summary "Using XenServer virtualization driver"
         read_password XENAPI_PASSWORD "ENTER A PASSWORD TO USE FOR XEN."
         iniset $NOVA_CONF DEFAULT compute_driver "xenapi.XenAPIDriver"
-        XENAPI_CONNECTION_URL=${XENAPI_CONNECTION_URL:-"http://169.254.0.1"}
-        XENAPI_USER=${XENAPI_USER:-"root"}
         iniset $NOVA_CONF DEFAULT xenapi_connection_url "$XENAPI_CONNECTION_URL"
         iniset $NOVA_CONF DEFAULT xenapi_connection_username "$XENAPI_USER"
         iniset $NOVA_CONF DEFAULT xenapi_connection_password "$XENAPI_PASSWORD"
