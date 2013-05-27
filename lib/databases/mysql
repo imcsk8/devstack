@@ -132,6 +132,8 @@ EOF
         install_package mysql-server
     elif is_suse; then
         install_package mysql-community-server
+    elif is_gentoo; then
+        install_package dev-db/mysql
     else
         exit_distro_not_supported "mysql installation"
     fi

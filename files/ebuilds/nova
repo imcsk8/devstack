@@ -9,8 +9,8 @@ net-misc/iputils
 kpartx # NOPRIME
 app-emulation/kvm-kmod   # NOPRIME gentoo users compile their own KVM modules
 # qemu as fallback if kvm cannot be used
-app-emulation/qemu
-app-emulation/libvirt
+app-emulation/qemu  # NOPRIME
+app-emulation/libvirt  # NOPRIME
 dev-db/mysql
 sys-block/parted
 dev-python/m2crypto 
